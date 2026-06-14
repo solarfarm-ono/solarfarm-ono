@@ -124,6 +124,12 @@
             border-color: #cccccc;
         }
 
+        .auth-tabs-container .auth-tab-btn:first-child.active {
+            background: var(--fresh-green);
+            color: #ffffff;
+            border-color: var(--fresh-green);
+        }
+
         .form-group { margin-bottom: 22px; text-align: left; }
         
         .input-wrapper {
@@ -226,7 +232,7 @@
             background: rgba(0,0,0,0.05) !important;
         }
         #btn-login:active:not(:disabled), #btn-register:active:not(:disabled) {
-            background: rgba(0,0,0,0.1) !important;
+            background: rgba(20, 20, 20, 0.12) !important;
         }
 
         .btn-admin {
@@ -395,9 +401,12 @@
             font-weight: 800;
             color: var(--text-gray);
             cursor: pointer;
-            transition: color 0.2s;
+            transition: background 0.2s, color 0.2s;
+            background: rgba(20, 20, 20, 0.35);
+            padding: 6px 12px;
+            border-radius: var(--border-radius-sm);
         }
-        .card-withdraw-text:hover { color: var(--text-black); }
+        .card-withdraw-text:hover { color: #ffffff; background: rgba(20, 20, 20, 0.55); }
 
         .card-title { font-size: 13px; text-transform: capitalize; margin-bottom: 3px; }
         .card-currency { font-size: 15px; font-weight: bold; margin-bottom: 5px; color: var(--text-gray); }
@@ -435,6 +444,18 @@
             cursor: pointer; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px; 
             text-transform: capitalize;
         }
+
+        .close-btn {
+            font-size: 22px;
+            width: 40px;
+            height: 40px;
+            justify-content: center;
+            padding: 0;
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+        .close-btn:hover { background: rgba(0,0,0,0.05); }
+        .close-btn:active { background: rgba(0,0,0,0.1); }
 
         .package-card { 
             background: rgba(255, 255, 255, 0.35);
@@ -834,7 +855,7 @@
         </div>
 
         <button class="btn" id="btn-login" onclick="appLogic.login()">
-            <span>Login</span>
+            <span>Log In</span>
         </button>
     </div>
 
@@ -927,21 +948,50 @@
             <div class="avatar-wrapper">
                 <div class="profile-avatar-circle" onclick="appLogic.toggleEmojiDropdown()" id="current-avatar">👤</div>
                 <div class="emoji-dropdown" id="emoji-dropdown">
-                    <div class="emoji-item" onclick="appLogic.selectAvatar('👨🏻‍🦱')">👨🏻‍🦱</div>
-                    <div class="emoji-item" onclick="appLogic.selectAvatar('👩🏼‍🦱')">👩🏼‍🦱</div>
-                    <div class="emoji-item" onclick="appLogic.selectAvatar('👨🏻‍🦲')">👨🏻‍🦲</div>
-                    <div class="emoji-item" onclick="appLogic.selectAvatar('👱🏻‍♀️')">👱🏻‍♀️</div>
-                    <div class="emoji-item" onclick="appLogic.selectAvatar('👴🏻')">👴🏻</div>
-                    <div class="emoji-item" onclick="appLogic.selectAvatar('👵🏻')">👵🏻</div>
-                    <div class="emoji-item" onclick="appLogic.selectAvatar('👩🏻‍💻')">👩🏻‍💻</div>
-                    <div class="emoji-item" onclick="appLogic.selectAvatar('🧔🏼‍♂️')">🧔🏼‍♂️</div>
-                    <div class="emoji-item" onclick="appLogic.selectAvatar('👩🏻‍💼')">👩🏻‍💼</div>
-                    <div class="emoji-item" onclick="appLogic.selectAvatar('👤')">👤</div>
+                    const avatarsList = [
+    "https://api.dicebear.com/7.x/avataaars/svg?seed=Felix",
+    "https://api.dicebear.com/7.x/avataaars/svg?seed=Aneka",
+    "https://api.dicebear.com/7.x/avataaars/svg?seed=Jack",
+    "https://api.dicebear.com/7.x/avataaars/svg?seed=Sofia",
+    "https://api.dicebear.com/7.x/avataaars/svg?seed=Oliver",
+    "https://api.dicebear.com/7.x/avataaars/svg?seed=Emma",
+    "https://api.dicebear.com/7.x/avataaars/svg?seed=Liam",
+    "https://api.dicebear.com/7.x/avataaars/svg?seed=Mia",
+    "https://api.dicebear.com/7.x/avataaars/svg?seed=Noah"
+];
+
+function initializeAvatarSystem() {
+    const dropdown = document.querySelector('.emoji-dropdown');
+    const avatarCircle = document.querySelector('.profile-avatar-circle');
+    
+    if (!dropdown || !avatarCircle) return;
+
+    dropdown.innerHTML = ''; 
+
+    avatarsList.forEach(avatarUrl => {
+        const item = document.createElement('div');
+        item.className = 'emoji-item';
+        item.innerHTML = `<img src="${avatarUrl}" style="width:100%; height:100%; object-fit:cover; border-radius:50%;" alt="avatar">`;
+        
+        item.onclick = () => {
+            avatarCircle.innerHTML = `<img src="${avatarUrl}" style="width:100%; height:100%; object-fit:cover; border-radius:50%;" alt="current avatar">`;
+            localStorage.setItem('solar_farm_user_avatar', avatarUrl);
+            dropdown.classList.remove('show');
+        };
+        dropdown.appendChild(item);
+    });
+
+    const savedAvatar = localStorage.getItem('solar_farm_user_avatar') || avatarsList[0];
+    avatarCircle.innerHTML = `<img src="${savedAvatar}" style="width:100%; height:100%; object-fit:cover; border-radius:50%;" alt="current avatar">`;
+}
+
+document.addEventListener('DOMContentLoaded', initializeAvatarSystem);
+
                 </div>
             </div>
             <div class="user-center-info">
                 <div class="display-phone" id="display-phone">+359******000</div>
-                <div class="display-id" id="display-id">ID: EN0000</div>
+                <div class="display-id" id="display-id">ID: 00000</div>
             </div>
             
             <div class="top-right-controls">
@@ -974,6 +1024,10 @@
                         <div class="back-stat-row">
                             <span class="back-label engraved-text-light">Total Profit</span>
                             <span class="back-value engraved-text-light" id="dash-total">0</span>
+                        </div>
+                        <div class="back-stat-row">
+                            <span class="back-label engraved-text-light">Total Profit Yesterday</span>
+                            <span class="back-value engraved-text-light" id="dash-yesterday">0</span>
                         </div>
                         <div class="back-stat-row">
                             <span class="back-label engraved-text-light">Total Profit Today</span>
@@ -1062,7 +1116,7 @@
     </div>
 
     <div id="packages-view" class="view">
-        <button class="back-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-arrow-left"></i> Dashboard</button>
+        <button class="back-btn close-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-times"></i></button>
         <h2 style="text-transform: capitalize; text-align: center; margin-bottom: 20px;">Shop</h2>
         
         <div id="shop-promo-timer" style="display: none;">
@@ -1096,7 +1150,7 @@
     </div>
 
     <div id="affiliate-view" class="view">
-        <button class="back-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-arrow-left"></i> Dashboard</button>
+        <button class="back-btn close-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-times"></i></button>
         <h2 class="text-center" style="text-transform: capitalize; margin-bottom: 20px;">My Team</h2>
         
         <div class="card text-center" style="background: rgba(255,255,255,0.9); border: 1px solid #ccc; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
@@ -1108,8 +1162,15 @@
                 <p style="font-size: 11px; color: #777; margin-bottom: 5px; text-transform: uppercase; font-weight: bold;">Your Invitation Code</p>
                 <h2 id="affiliate-code-display" style="letter-spacing: 4px; margin: 0; color: #000; font-size: 24px; text-shadow: none;">LOADING...</h2>
             </div>
-            <button class="btn" style="background: #000; color: #fff; border: none;" onclick="appLogic.copyCode()">
+            <div style="background: #fff; padding: 15px; border-radius: 10px; border: 1px solid #ddd; margin-bottom: 15px;">
+                <p style="font-size: 11px; color: #777; margin-bottom: 5px; text-transform: uppercase; font-weight: bold;">Your Invitation Link</p>
+                <p id="affiliate-link-display" style="margin: 0; color: #000; font-size: 12px; word-break: break-all; font-weight: 700;">LOADING...</p>
+            </div>
+            <button class="btn" style="background: #000; color: #fff; border: none; margin-bottom: 10px;" onclick="appLogic.copyCode()">
                 <i class="fas fa-copy"></i> Copy Code
+            </button>
+            <button class="btn" style="background: #000; color: #fff; border: none;" onclick="appLogic.copyInviteLink()">
+                <i class="fas fa-link"></i> Copy Invitation Link
             </button>
         </div>
 
@@ -1157,7 +1218,7 @@
     </div>
 
     <div id="energy-plans-view" class="view">
-        <button class="back-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-arrow-left"></i> Dashboard</button>
+        <button class="back-btn close-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-times"></i></button>
             <style>
         .info-how-works-block {
             background-color: #0a1d3a;
@@ -1196,7 +1257,7 @@
             width: 100%;
             max-width: 100%;
             height: auto;
-            border-radius: 10px; /* леко заобляне на ъглите на снимката, ако искаш */
+            border-radius: 10px;
             display: block;
             margin: 0 auto;
         }
@@ -1214,7 +1275,7 @@
             </ul>
         </div>
         
-        <img src="AC2B6A6C-3B65-4CB0-98FB-1DBB740C1199.png⁠" alt="How the system works" class="info-diagram-img">
+        <img src="IMG_0001.PNG" alt="How the system works" class="info-diagram-img">
     </div>
    
 
@@ -1275,20 +1336,20 @@
     </div>
 
     <div id="history-view" class="view">
-        <button class="back-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-arrow-left"></i> Dashboard</button>
+        <button class="back-btn close-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-times"></i></button>
         <h2 style="text-transform: capitalize; text-align: center; margin-bottom: 20px;">Transaction History</h2>
         <div id="history-list"></div>
     </div>
 
     <div id="solarfarm-view" class="view">
-        <button class="back-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-arrow-left"></i> Dashboard</button>
+        <button class="back-btn close-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-times"></i></button>
         <h2 style="text-transform: capitalize; text-align: center; margin-bottom: 20px;">Solar Farm</h2>
         <div id="solarfarm-map"></div>
         <button class="btn btn-solarfarm-find" onclick="appLogic.findSolarFarm()">Find Solar Farm</button>
     </div>
 
     <div id="profile-view" class="view">
-        <button class="back-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-arrow-left"></i> Dashboard</button>
+        <button class="back-btn close-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-times"></i></button>
         <h2 class="text-center" style="margin-bottom: 25px; text-transform: capitalize;">Settings</h2>
 
 
@@ -1519,6 +1580,17 @@
                 this.showMainApp();
             } else {
                 this.renderPackages();
+                this.applyReferralFromUrl();
+            }
+        },
+
+        applyReferralFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            const ref = params.get('ref');
+            if (ref) {
+                const inviteInput = document.getElementById('reg-invite');
+                if (inviteInput) inviteInput.value = ref;
+                this.switchAuthView('register');
             }
         },
 
@@ -1773,23 +1845,25 @@
 
             const fullPhone = countryCode + phone;
             const dbKey = fullPhone.replace('+', '');
-            const generatedCode = 'EN' + Math.floor(Math.random()*9000 + 1000);
 
             try {
+                const userRef = window.fref(window.fdb, 'users/' + dbKey);
+                const existingSnap = await window.fget(userRef);
+
+                if(existingSnap.exists()) {
+                    btn.disabled = false;
+                    btn.innerText = 'Register';
+                    return this.showToast("This phone number is already registered!", "error");
+                }
+
                 const usersRef = window.fref(window.fdb, 'users');
                 const usersSnap = await window.fget(usersRef);
                 
                 let isInviteValid = false;
-                if(inviteCode === "ADMIN") {
+                if(inviteCode === "onemilion") {
                     isInviteValid = true;
                 } else if(usersSnap.exists()) {
                     const allUsers = usersSnap.val();
-                    if(allUsers[dbKey]) {
-                        this.showToast("This phone number is already registered!", "error");
-                        btn.disabled = false;
-                        btn.innerText = 'Register';
-                        return;
-                    }
                     for(let k in allUsers) {
                         if(allUsers[k].myCode === inviteCode) { isInviteValid = true; break; }
                     }
@@ -1801,7 +1875,12 @@
                     return this.showToast("Invalid invitation code!", "error");
                 }
 
-                const userRef = window.fref(window.fdb, 'users/' + dbKey);
+                const counterRef = window.fref(window.fdb, 'settings/nextUserId');
+                const counterSnap = await window.fget(counterRef);
+                const nextId = counterSnap.exists() ? parseInt(counterSnap.val()) : 1;
+                const generatedCode = String(nextId).padStart(5, '0');
+                await window.fset(counterRef, nextId + 1);
+
                 await window.fset(userRef, {
                     fullName: name,
                     phone: fullPhone,
@@ -1817,6 +1896,7 @@
                     packageActivatedAt: 0, 
                     syncedPackageProfit: 0, 
                     lastSyncedTeamBonus: 0,
+                    yesterdayProfit: 0,
                     checkInCount: 0,
                     sevenDayBonusClaimed: false,
                     lastCheckIn: 0,
@@ -1885,7 +1965,7 @@
                 this.showToast("Login error", "error");
             } finally {
                 btn.disabled = false;
-                btn.innerText = 'Login';
+                btn.innerText = 'Log In';
             }
         },
 
@@ -1900,6 +1980,19 @@
             document.getElementById('display-phone').innerText = this.maskPhone(phone);
             document.getElementById('display-id').innerText = 'ID: ' + code;
             document.getElementById('affiliate-code-display').innerText = code;
+            const linkEl = document.getElementById('affiliate-link-display');
+            if (linkEl) {
+                const baseUrl = window.location.origin + window.location.pathname;
+                linkEl.innerText = code ? `${baseUrl}?ref=${code}` : '';
+            }
+        },
+
+        copyInviteLink() {
+            const code = localStorage.getItem('myCode') || '';
+            if (!code) return;
+            const baseUrl = window.location.origin + window.location.pathname;
+            const link = `${baseUrl}?ref=${code}`;
+            navigator.clipboard.writeText(link).then(() => { this.showToast("Invitation link copied!", "success"); });
         },
         
         startDatabaseListener() {
@@ -1949,6 +2042,10 @@
                 if(investUSDT === 0 && data.activePackage && data.activePackage !== "none") {
                     const pkgInfo = basePackages.find(p => p.name === data.activePackage);
                     if(pkgInfo) investUSDT = pkgInfo.price;
+                }
+                const extraPkgsForInvest = data.extraPackages || {};
+                for (const key in extraPkgsForInvest) {
+                    investUSDT += parseFloat(extraPkgsForInvest[key].price || 0);
                 }
                 document.getElementById('dash-invest').innerText = this.fmt(investUSDT);
                 const extraCount = data.extraPackages ? Object.keys(data.extraPackages).length : 0;
@@ -2003,6 +2100,17 @@
                     }
                 }
 
+                let ownDailyRate = parseFloat(this.currentUserData.dailyProfit || 0);
+                if (!(this.currentUserData.activePackage && this.currentUserData.activePackage !== "none")) {
+                    ownDailyRate = 0;
+                }
+                const extraPkgsForYesterday = this.currentUserData.extraPackages || {};
+                for (const key in extraPkgsForYesterday) {
+                    ownDailyRate += parseFloat(extraPkgsForYesterday[key].daily || 0);
+                }
+
+                const yesterdayProfitUSDT = ownDailyRate + totalCommissionUSDT;
+
                 const myUid = localStorage.getItem('uid');
 
                 if (totalCommissionUSDT > 0) {
@@ -2011,7 +2119,8 @@
                     
                     await window.fupdate(window.fref(window.fdb, 'users/' + myUid), {
                         balance: newBalance,
-                        lastCommCheck: todayStr
+                        lastCommCheck: todayStr,
+                        yesterdayProfit: yesterdayProfitUSDT
                     });
 
                     await window.fset(window.fpush(window.fref(window.fdb, `users/${myUid}/withdrawals`)), {
@@ -2024,7 +2133,7 @@
                     
                     this.showToast(`Received daily commission: ${totalCommissionUSDT.toFixed(2)} USDT!`, 'success');
                 } else {
-                    await window.fupdate(window.fref(window.fdb, 'users/' + myUid), { lastCommCheck: todayStr });
+                    await window.fupdate(window.fref(window.fdb, 'users/' + myUid), { lastCommCheck: todayStr, yesterdayProfit: yesterdayProfitUSDT });
                 }
             } catch (e) {
                 console.error("Commission check error", e);
@@ -2195,6 +2304,7 @@
             document.getElementById('dash-balance').innerText = this.fmt(liveWalletBalanceUSDT).replace(/[a-zA-Z€$£]/g, '').trim();
             
             document.getElementById('dash-total').innerText = this.fmt(totalDisplayUSDT);
+            document.getElementById('dash-yesterday').innerText = this.fmt(parseFloat(data.yesterdayProfit || 0));
             document.getElementById('dash-today').innerText = this.fmt(todayDisplayUSDT);
 
             const affEarned = document.getElementById('affiliate-earned');
@@ -2309,7 +2419,6 @@
             document.querySelectorAll('.pin-box').forEach(el => el.value = '');
             this.generateWithdrawGrid();
             
-            // Set fee text
             const checkIns = this.currentUserData?.checkInCount || 0;
             const feePercent = checkIns >= 40 ? 5 : 10;
             document.getElementById('withdraw-fee-text').innerText = feePercent + "%";
@@ -2587,7 +2696,8 @@
                                 <p style="font-size:11px; margin-bottom:4px;"><strong>ID:</strong> ${w.id}</p>
                                 <p style="font-size:11px; margin-bottom:4px;"><strong>Phone:</strong> ${w.userPhone}</p>
                                 <p style="font-size:11px; margin-bottom:4px; word-break:break-all;"><strong>Addr:</strong> ${w.cryptoAddress}</p>
-                                <p style="font-size:12px; margin-bottom:8px; color:var(--fresh-green);"><strong>Amount:</strong> ${w.amount} USDT</p>
+                                <p style="font-size:12px; margin-bottom:4px; color:var(--fresh-green);"><strong>Amount (deducted from balance):</strong> ${w.amount} USDT</p>
+                                <p style="font-size:12px; margin-bottom:8px; color:#f5c518;"><strong>To send (after fee):</strong> ${w.netAmount !== undefined ? w.netAmount : w.amount} USDT</p>
                                 <div style="display:flex; justify-content:space-between;">
                                     <span style="font-size:11px; text-transform:capitalize; color:${w.status === 'completed' ? 'var(--success-green)' : '#aaa'};">${w.status}</span>
                                     ${btnHtml}
@@ -3077,7 +3187,7 @@
         },
 
         haversineDistance(lat1, lon1, lat2, lon2) {
-            const R = 6371; // km
+            const R = 6371;
             const dLat = (lat2 - lat1) * Math.PI / 180;
             const dLon = (lon2 - lon1) * Math.PI / 180;
             const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
