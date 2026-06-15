@@ -561,14 +561,14 @@
             width: 90%; max-width: 400px; display: flex; flex-direction: column; gap: 10px; pointer-events: none;
         }
         .toast { 
-            background: #cc0000; color: #ffffff; padding: 15px 20px;
+            background: #6B0011; color: #ffffff; padding: 15px 20px;
             border-radius: var(--border-radius-sm); border: none;
             display: flex; align-items: center; gap: 15px; font-size: 13px; font-weight: 700;
             box-shadow: 0 10px 30px rgba(0,0,0,0.25);
             animation: toastSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .toast.error { background: #cc0000 !important; color: #ffffff !important; }
-        .toast.success { background: #1a7a35 !important; color: #ffffff !important; }
+        .toast.error { background: #6B0011 !important; color: #ffffff !important; }
+        .toast.success { background: #0d5c25 !important; color: #ffffff !important; }
         .toast.info { background: #1a4a8a !important; color: #ffffff !important; }
         .toast.admin-msg { background: #6a0099 !important; color: #ffffff !important; }
 
@@ -807,12 +807,12 @@
         }
         .slide-fill {
             position: absolute; top: 0; left: 0; height: 100%; width: 56px;
-            background: linear-gradient(90deg, #8B001A, #c0152f); border-radius: 28px;
+            background: linear-gradient(90deg, #6B0011, #c0152f); border-radius: 28px;
             transition: none;
         }
         .slide-handle {
             position: absolute; top: 0; left: 0; width: 56px; height: 56px;
-            background: #8B001A; border-radius: 50%; display: flex; justify-content: center;
+            background: #6B0011; border-radius: 50%; display: flex; justify-content: center;
             align-items: center; color: #fff; font-size: 20px; cursor: grab;
             box-shadow: 0 4px 10px rgba(37,99,235,0.4); touch-action: none; z-index: 2;
         }
@@ -904,7 +904,7 @@
         #admin-view .back-btn { color:#ffffff !important; }
 
         /* Admin USER + Report buttons -> white */
-        #admin-view .btn-admin { background:#8B001A !important; color:#ffffff !important; border:none !important; font-weight:800 !important; }
+        #admin-view .btn-admin { background:#6B0011 !important; color:#ffffff !important; border:none !important; font-weight:800 !important; }
         #admin-view .btn-admin * { color:#ffffff !important; }
         #admin-view .btn-admin i { color:#ffffff !important; }
 
@@ -971,7 +971,7 @@
             opacity: 0.7; transition: all 0.2s;
         }
         #users-tab-premium.active-tab, #users-tab-regular.active-tab {
-            background: #8B001A !important; color:#fff !important;
+            background: #6B0011 !important; color:#fff !important;
             opacity: 1; box-shadow: 0 4px 12px rgba(139,0,26,0.4);
         }
         #users-tab-premium *, #users-tab-regular * { color:#fff !important; }
@@ -1009,21 +1009,26 @@
         #saved-wallet-display { color:#000000 !important; }
 
 
-        /* Withdrawal view -> card-colored bg, boxes card color + yellow borders, black X */
+        /* Withdrawal view -> home page bg, card-colored amt boxes */
         #withdrawal-view {
-            background-color:#0a1d3a; background-image: radial-gradient(circle at top left, rgba(80,140,255,0.35) 0%, transparent 60%), radial-gradient(circle at bottom right, rgba(30,60,120,0.5) 0%, transparent 65%);
+            background-color: #ffffff;
+            background-image: 
+                radial-gradient(circle at top left, rgba(150,210,255,0.8) 0%, transparent 55%),
+                radial-gradient(circle at top right, rgba(255,240,150,0.8) 0%, transparent 55%);
             background-attachment: fixed;
+            background-size: cover;
         }
-        #withdrawal-view h2 { color:#ffffff !important; }
-        #withdrawal-view .card { background: rgba(255,255,255,0.06) !important; border:1px solid #d4af37 !important; }
+        #withdrawal-view h2 { color:#000000 !important; }
+        #withdrawal-view .card { background: rgba(255,255,255,0.7) !important; border:1px solid #eee !important; }
         #withdrawal-view .amt-box {
-            background-color:#0a1d3a; background-image: radial-gradient(circle at top left, rgba(80,140,255,0.35) 0%, transparent 60%), radial-gradient(circle at bottom right, rgba(30,60,120,0.5) 0%, transparent 65%);
+            background-color:#0a1d3a !important;
+            background-image: radial-gradient(circle at top left, rgba(80,140,255,0.35) 0%, transparent 60%), radial-gradient(circle at bottom right, rgba(30,60,120,0.5) 0%, transparent 65%) !important;
             border:1.5px solid #d4af37 !important;
             color:#ffffff !important;
         }
-        #withdrawal-view .amt-box.selected { border:2px solid #ffd700 !important; background-color:#13294f !important; color:#ffffff !important; }
-        #withdrawal-view .pin-box { background: rgba(0,0,0,0.3) !important; border:1px solid #d4af37 !important; color:#fff !important; }
-        #withdrawal-view p, #withdrawal-view span { color:#ffffff !important; }
+        #withdrawal-view .amt-box.selected { border:2.5px solid #ffd700 !important; background-color:#13294f !important; color:#ffffff !important; box-shadow: 0 0 8px rgba(212,175,55,0.5) !important; }
+        #withdrawal-view .pin-box { background: rgba(255,255,255,0.8) !important; border:1px solid #ccc !important; color:#000 !important; }
+        #withdrawal-view p, #withdrawal-view span { color:#000000 !important; }
         #withdrawal-view .back-btn.close-btn, #withdrawal-view .close-btn { color:#000000 !important; }
         #withdrawal-view .close-btn i { color:#000000 !important; }
 
@@ -1043,12 +1048,12 @@
         #packages-view .package-card .package-details { background: rgba(255,255,255,0.10) !important; }
         #packages-view .package-card .package-details div[style*="border-left"] { border-left-color: rgba(255,255,255,0.25) !important; }
         /* Shop buttons -> red */
-        #packages-view .btn-invest, #packages-view .btn-reinvest { background:#8B001A !important; color:#fff !important; border:none !important; }
+        #packages-view .btn-invest, #packages-view .btn-reinvest { background:#6B0011 !important; color:#fff !important; border:none !important; }
         #packages-view .btn-invest *, #packages-view .btn-reinvest * { color:#fff !important; }
         /* Copy Address, Calculate, Cancel buttons (in modals) -> red */
         #payment-modal .btn, #shop-calc-modal .btn[onclick*="calculate"], #verification-modal .btn[onclick*="copyVerify"] { }
-        .btn[onclick*="copyVerifyAddress"], .btn[onclick*="calculateShopProfit"] { background:#8B001A !important; color:#fff !important; border:none !important; }
-        #invest-slide-overlay .btn-settings-outline[onclick*="closeInvestSlider"] { background:#8B001A !important; color:#fff !important; border:none !important; }
+        .btn[onclick*="copyVerifyAddress"], .btn[onclick*="calculateShopProfit"] { background:#6B0011 !important; color:#fff !important; border:none !important; }
+        #invest-slide-overlay .btn-settings-outline[onclick*="closeInvestSlider"] { background:#6B0011 !important; color:#fff !important; border:none !important; }
         /* Calculator result background -> card colored, white text */
         #shop-calc-result-box {
             background-color:#0a1d3a !important;
@@ -1059,8 +1064,8 @@
 
 
 
-        /* Withdrawal and Shop background gradient */
-        #withdrawal-view, #packages-view {
+        /* Shop background gradient */
+        #packages-view {
             background: 
                 radial-gradient(circle at top left, rgba(100,160,255,0.55) 0%, transparent 50%),
                 radial-gradient(circle at top right, rgba(255,235,120,0.55) 0%, transparent 50%),
@@ -1129,7 +1134,7 @@
         <div class="slide-label" id="invest-slide-label">Slide to buy</div>
         <div class="slide-handle" id="invest-slide-handle"><i class="fas fa-chevron-right"></i></div>
     </div>
-    <button class="btn" style="margin-top:15px; background:#8B001A; color:#fff; border:none;" onclick="appLogic.closeInvestSlider()" data-i18n="cancel">Cancel</button>
+    <button class="btn" style="margin-top:15px; background:#6B0011; color:#fff; border:none;" onclick="appLogic.closeInvestSlider()" data-i18n="cancel">Cancel</button>
 </div>
 
 <div id="buy-success-overlay">
@@ -1445,7 +1450,7 @@
                 <input type="password" inputmode="numeric" class="pin-box" maxlength="1" onkeyup="appLogic.movePin(this, 6)">
             </div>
 
-            <button class="btn" id="btn-withdraw" onclick="appLogic.withdraw()" style="background:#8B001A; color:#fff; border:none;">
+            <button class="btn" id="btn-withdraw" onclick="appLogic.withdraw()" style="background:#6B0011; color:#fff; border:none;">
                 <span data-i18n="withdrawal">Withdrawal</span>
             </button>
         </div>
@@ -1474,27 +1479,27 @@
     </div>
 
     <div id="report-modal" class="modal-overlay" style="background: rgba(10,29,58,0.85);">
-        <div class="modal-content text-center">
-            <span class="close-modal-x" onclick="appLogic.closeModal('report-modal')">&times;</span>
-            <h3 style="margin-bottom: 6px;"><i class="fas fa-chart-line"></i> Admin Info</h3>
-            <p style="font-size:11px; color:var(--text-gray); margin-bottom:18px;">Last 24 hours overview</p>
+        <div class="modal-content text-center" style="background-color:#0a1d3a; background-image: radial-gradient(circle at top left, rgba(80,140,255,0.35) 0%, transparent 60%), radial-gradient(circle at bottom right, rgba(30,60,120,0.5) 0%, transparent 65%); border: 1.5px solid #d4af37;">
+            <span class="close-modal-x" onclick="appLogic.closeModal('report-modal')" style="color:#ffffff;">&times;</span>
+            <h3 style="margin-bottom: 6px; color:#ffffff;"><i class="fas fa-chart-line"></i> Admin Info</h3>
+            <p style="font-size:11px; color:rgba(255,255,255,0.7); margin-bottom:18px;">Last 24 hours overview</p>
 
             <div style="display:flex; flex-direction:column; gap:12px;">
-                <div style="background:#f5f8ff; border:1px solid #d6e4ff; border-radius:12px; padding:16px; text-align:left;">
-                    <div style="font-size:11px; color:#777; font-weight:700; text-transform:uppercase;">New users (24h)</div>
-                    <div style="font-size:26px; font-weight:900; color:#1a56db;" id="report-newusers">0</div>
+                <div style="background-color:#0a2550; background-image: radial-gradient(circle at top left, rgba(80,140,255,0.3) 0%, transparent 60%); border:1.5px solid #d4af37; border-radius:12px; padding:16px; text-align:left;">
+                    <div style="font-size:11px; color:rgba(255,255,255,0.75); font-weight:700; text-transform:uppercase;">New users (24h)</div>
+                    <div style="font-size:26px; font-weight:900; color:#ffffff;" id="report-newusers">0</div>
                 </div>
-                <div style="background:#fffaf0; border:1px solid #ffe0b0; border-radius:12px; padding:16px; text-align:left;">
-                    <div style="font-size:11px; color:#777; font-weight:700; text-transform:uppercase;">Money to be transferred</div>
-                    <div style="font-size:26px; font-weight:900; color:#b8860b;" id="report-pending">0.00 USDT</div>
+                <div style="background-color:#0a2550; background-image: radial-gradient(circle at top left, rgba(80,140,255,0.3) 0%, transparent 60%); border:1.5px solid #d4af37; border-radius:12px; padding:16px; text-align:left;">
+                    <div style="font-size:11px; color:rgba(255,255,255,0.75); font-weight:700; text-transform:uppercase;">Money to be transferred</div>
+                    <div style="font-size:26px; font-weight:900; color:#ffffff;" id="report-pending">0.00 USDT</div>
                 </div>
-                <div style="background:#f0fff4; border:1px solid #b7f0c8; border-radius:12px; padding:16px; text-align:left;">
-                    <div style="font-size:11px; color:#777; font-weight:700; text-transform:uppercase;">Money transferred</div>
-                    <div style="font-size:26px; font-weight:900; color:#15803d;" id="report-paid">0.00 USDT</div>
+                <div style="background-color:#0a2550; background-image: radial-gradient(circle at top left, rgba(80,140,255,0.3) 0%, transparent 60%); border:1.5px solid #d4af37; border-radius:12px; padding:16px; text-align:left;">
+                    <div style="font-size:11px; color:rgba(255,255,255,0.75); font-weight:700; text-transform:uppercase;">Money transferred</div>
+                    <div style="font-size:26px; font-weight:900; color:#ffffff;" id="report-paid">0.00 USDT</div>
                 </div>
-                <div style="background:#faf5ff; border:1px solid #e3d0ff; border-radius:12px; padding:16px; text-align:left;">
-                    <div style="font-size:11px; color:#777; font-weight:700; text-transform:uppercase;">Total user balances</div>
-                    <div style="font-size:26px; font-weight:900; color:#7c2d91;" id="report-balances">0.00 USDT</div>
+                <div style="background-color:#0a2550; background-image: radial-gradient(circle at top left, rgba(80,140,255,0.3) 0%, transparent 60%); border:1.5px solid #d4af37; border-radius:12px; padding:16px; text-align:left;">
+                    <div style="font-size:11px; color:rgba(255,255,255,0.75); font-weight:700; text-transform:uppercase;">Total user balances</div>
+                    <div style="font-size:26px; font-weight:900; color:#ffffff;" id="report-balances">0.00 USDT</div>
                 </div>
             </div>
         </div>
@@ -1557,14 +1562,14 @@
                 <div class="input-wrapper" style="margin-bottom:15px;">
                     <input type="text" id="forgot-newpass" data-i18n-ph="newPassword" placeholder="New Password (6-12 chars)">
                 </div>
-                <button class="btn" style="background:#8B001A !important; color:#fff !important; border:none !important;" onclick="appLogic.submitForgotPassword()" data-i18n="send">Send</button>
+                <button class="btn" style="background:#6B0011 !important; color:#fff !important; border:none !important;" onclick="appLogic.submitForgotPassword()" data-i18n="send">Send</button>
             </div>
 
             <div id="forgot-confirm" style="display:none;">
                 <i class="fas fa-phone-volume" style="font-size:34px; color:#22c55e; margin-bottom:14px;"></i>
                 <p style="font-size:14px; color:#ffffff; font-weight:700; line-height:1.55; margin-bottom:16px;" data-i18n="forgotCallMsg">Please make a short call to this number +12058315912 we will not pick up, therefore the call will not be charged to you.</p>
-                <a href="tel:+12058315912" class="btn" style="text-decoration:none; margin-bottom:10px; background:#8B001A; color:#fff; border:none;">+1 205 831 5912</a>
-                <button class="btn" onclick="appLogic.closeModal('forgot-modal')" style="background:#8B001A; color:#fff; border:none;" data-i18n="close">Close</button>
+                <a href="tel:+12058315912" class="btn" style="text-decoration:none; margin-bottom:10px; background:#6B0011; color:#fff; border:none;">+1 205 831 5912</a>
+                <button class="btn" onclick="appLogic.closeModal('forgot-modal')" style="background:#6B0011; color:#fff; border:none;" data-i18n="close">Close</button>
             </div>
         </div>
     </div>
@@ -1582,7 +1587,7 @@
                 0x4490f7dDCd1c2dC32C8592bea599ef61BeebB74F
             </div>
 
-            <button class="btn" style="background:#8B001A; color:#fff; border:none;" onclick="appLogic.copyVerifyAddress()" data-i18n="copyAddress">Copy Address</button>
+            <button class="btn" style="background:#6B0011; color:#fff; border:none;" onclick="appLogic.copyVerifyAddress()" data-i18n="copyAddress">Copy Address</button>
         </div>
     </div>
 
@@ -1635,7 +1640,7 @@
                     <input type="number" id="shop-calc-days" placeholder="Number of Days" value="30">
                 </div>
             </div>
-            <button class="btn" style="background:#8B001A !important; color:#fff !important; border:none !important;" onclick="appLogic.calculateShopProfit()" data-i18n="calculate">Calculate</button>
+            <button class="btn" style="background:#6B0011 !important; color:#fff !important; border:none !important;" onclick="appLogic.calculateShopProfit()" data-i18n="calculate">Calculate</button>
             <div class="calc-box" style="margin-top: 20px; display: none;" id="shop-calc-result-box">
                 <div style="font-size: 12px; color: var(--text-gray); font-weight: bold; text-align: center;">Net Profit:</div>
                 <div class="calc-result"><span id="shop-calc-net">0.00</span></div>
@@ -1654,13 +1659,13 @@
                 <div style="background: #1a1a1a; padding: 15px; border-radius: 10px; border: 1px solid #333; text-align: left;">
                     <p style="font-size: 14px; font-weight: bold; margin-bottom: 5px; color: #ffffff;">USDT (ERC20)</p>
                     <p style="font-size: 11px; font-family: monospace; word-break: break-all; margin-bottom: 10px; color: #aaa;">0xb757dD4d892c7ac47A803e8A0490857771747aB5</p>
-                    <button class="btn" style="background: #8B001A; color: white; padding: 10px; font-size: 12px; width: 100%; border: none;" onclick="appLogic.copySpecificAddress('0xb757dD4d892c7ac47A803e8A0490857771747aB5')" data-i18n="copyAddress">Copy Address</button>
+                    <button class="btn" style="background: #6B0011; color: white; padding: 10px; font-size: 12px; width: 100%; border: none;" onclick="appLogic.copySpecificAddress('0xb757dD4d892c7ac47A803e8A0490857771747aB5')" data-i18n="copyAddress">Copy Address</button>
                 </div>
 
                 <div style="background: #1a1a1a; padding: 15px; border-radius: 10px; border: 1px solid #333; text-align: left;">
                     <p style="font-size: 14px; font-weight: bold; margin-bottom: 5px; color: #ffffff;">USDT (TRC20)</p>
                     <p style="font-size: 11px; font-family: monospace; word-break: break-all; margin-bottom: 10px; color: #aaa;">TVNxLugPKdsKF8ETgXxze7mrqBvfn7xUKt</p>
-                    <button class="btn" style="background: #8B001A; color: white; padding: 10px; font-size: 12px; width: 100%; border: none;" onclick="appLogic.copySpecificAddress('TVNxLugPKdsKF8ETgXxze7mrqBvfn7xUKt')" data-i18n="copyAddress">Copy Address</button>
+                    <button class="btn" style="background: #6B0011; color: white; padding: 10px; font-size: 12px; width: 100%; border: none;" onclick="appLogic.copySpecificAddress('TVNxLugPKdsKF8ETgXxze7mrqBvfn7xUKt')" data-i18n="copyAddress">Copy Address</button>
                 </div>
             </div>
         </div>
@@ -1680,7 +1685,7 @@
                 <p id="affiliate-link-display" style="margin: 0; color: #ffffff; font-size: 12px; word-break: break-all; font-weight: 700;">LOADING...</p>
             </div>
             <span id="affiliate-code-display" style="display:none;">LOADING...</span>
-            <button class="btn" style="background: #8B001A; color: #fff; border: none;" onclick="appLogic.copyInviteLink()">
+            <button class="btn" style="background: #6B0011; color: #fff; border: none;" onclick="appLogic.copyInviteLink()">
                 <i class="fas fa-link"></i> <span data-i18n="copyInviteLink">Copy Invitation Link</span>
             </button>
         </div>
@@ -1732,12 +1737,12 @@
         <button class="back-btn close-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-times"></i></button>
         <div style="text-align:center; margin-bottom:8px;">
             <p style="font-size:14px; font-weight:800; color:#000; margin-bottom:4px;">Sequential check-in</p>
-            <div id="sequential-checkin-count" style="font-size:64px; font-weight:900; color:#8B001A; line-height:1;">0</div>
+            <div id="sequential-checkin-count" style="font-size:64px; font-weight:900; color:#6B0011; line-height:1;">0</div>
         </div>
         
         <div class="calendar-grid" id="checkin-view-grid"></div>
         
-        <button class="btn" id="btn-checkin-view" onclick="appLogic.checkIn()" style="margin-bottom: 20px; background:#8B001A; color:#fff; border:none;" data-i18n="checkInNow">
+        <button class="btn" id="btn-checkin-view" onclick="appLogic.checkIn()" style="margin-bottom: 20px; background:#6B0011; color:#fff; border:none;" data-i18n="checkInNow">
             Check In Now
         </button>
 
@@ -1852,7 +1857,7 @@
         <button class="back-btn close-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-times"></i></button>
         <h2 style="text-transform: capitalize; text-align: center; margin-bottom: 20px;" data-i18n="solarFarm">Solar Power</h2>
         <div id="solarfarm-map"></div>
-        <button class="btn" style="background:#8B001A !important; color:#fff !important; border:none !important; box-shadow:0 4px 10px rgba(139,0,26,0.35) !important;" onclick="appLogic.findSolarFarm()" data-i18n="findSolarFarm">Find Solar Power</button>
+        <button class="btn" style="background:#6B0011 !important; color:#fff !important; border:none !important; box-shadow:0 4px 10px rgba(139,0,26,0.35) !important;" onclick="appLogic.findSolarFarm()" data-i18n="findSolarFarm">Find Solar Power</button>
     </div>
 
     <div id="profile-view" class="view">
@@ -1955,8 +1960,14 @@
         </div>
 
         <div style="display:flex; gap:10px; margin-bottom:20px;">
-            <button id="users-tab-premium" class="btn" style="flex:1; padding:12px; font-size:13px; background:#8B001A; color:#fff; border:none;" onclick="appLogic.showUserTab('premium')">Premium</button>
-            <button id="users-tab-regular" class="btn" style="flex:1; padding:12px; font-size:13px; background:#8B001A; color:#fff; border:none;" onclick="appLogic.showUserTab('regular')">Regular</button>
+            <div style="flex:1; display:flex; flex-direction:column; gap:4px;">
+                <button id="users-tab-premium" class="btn" style="width:100%; padding:12px; font-size:13px; background:#6B0011; color:#fff; border:none;" onclick="appLogic.showUserTab('premium')">Premium</button>
+                <div id="users-count-premium" style="text-align:center; font-size:11px; font-weight:700; color:var(--text-gray);">— users</div>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; gap:4px;">
+                <button id="users-tab-regular" class="btn" style="width:100%; padding:12px; font-size:13px; background:#6B0011; color:#fff; border:none;" onclick="appLogic.showUserTab('regular')">Regular</button>
+                <div id="users-count-regular" style="text-align:center; font-size:11px; font-weight:700; color:var(--text-gray);">— users</div>
+            </div>
         </div>
 
         <div id="users-list">
@@ -2011,13 +2022,13 @@
                     <textarea id="admin-broadcast-msg" rows="3" placeholder="Type your message here..."></textarea>
                 </div>
             </div>
-            <button class="btn" style="background: #8B001A; color: white; border:none;" onclick="appLogic.sendBroadcast()">Send Broadcast</button>
+            <button class="btn" style="background: #6B0011; color: white; border:none;" onclick="appLogic.sendBroadcast()">Send Broadcast</button>
         </div>
 
         <div class="card" style="border-color: var(--error-red);">
             <h3 style="font-size: 14px; margin-bottom: 10px;">Lock Withdrawals (Verification)</h3>
             <p style="font-size: 11px; color: var(--text-gray); margin-bottom: 15px;">Users will see a popup asking for 50 USDT verification to the specified address.</p>
-            <button class="btn" id="btn-freeze-toggle" onclick="appLogic.adminToggleFreeze()" style="background: #8B001A; color: white; border: none;">
+            <button class="btn" id="btn-freeze-toggle" onclick="appLogic.adminToggleFreeze()" style="background: #6B0011; color: white; border: none;">
                 Enable Lock Mode
             </button>
         </div>
@@ -2025,7 +2036,7 @@
         <div class="card" style="border-color: var(--fresh-green);">
             <h3 style="font-size: 14px; margin-bottom: 10px;">Fake 24h Promo (-50%)</h3>
             <p style="font-size: 11px; color: var(--text-gray); margin-bottom: 15px;">Automatically halves all package prices and strikes through original.</p>
-            <button class="btn" id="btn-promo-toggle" onclick="appLogic.togglePromoAdmin()" style="background: #8B001A; color: white; border: none;">
+            <button class="btn" id="btn-promo-toggle" onclick="appLogic.togglePromoAdmin()" style="background: #6B0011; color: white; border: none;">
                 Start 24h Promo
             </button>
         </div>
@@ -2033,7 +2044,7 @@
         <div class="card" style="border-color: #d4af37;">
             <h3 style="font-size: 14px; margin-bottom: 10px;">Solar Power Infinity Package</h3>
             <p style="font-size: 11px; color: var(--text-gray); margin-bottom: 15px;">When enabled, a large Solar Power Infinity package (20,000 USDT, 1,700/day) appears at the top of the Shop and in the calculator.</p>
-            <button class="btn" id="btn-infinity-toggle" onclick="appLogic.toggleInfinityAdmin()" style="background: #8B001A; color: white; border: none;">
+            <button class="btn" id="btn-infinity-toggle" onclick="appLogic.toggleInfinityAdmin()" style="background: #6B0011; color: white; border: none;">
                 Enable Solar Power Infinity
             </button>
         </div>
@@ -2765,7 +2776,11 @@
             if(!container) return;
             container.innerHTML = '';
             
-            this.getActivePackagesList().forEach((pkg, idx) => {
+            const pkgList = this.getActivePackagesList();
+            const infinityOn = this.solarInfinityEnabled;
+
+            pkgList.forEach((pkg, idx) => {
+                const isInfinityPkg = (pkg.id === 'solar_infinity' && pkg.name === SOLAR_INFINITY.name);
                 let currentPrice = pkg.price;
                 let priceHtml = `<div class="package-price">${this.fmt(pkg.price)}</div>`;
                 
@@ -2779,10 +2794,19 @@
                 }
 
                 let remaining = this.dynamicStock[pkg.id] !== undefined ? this.dynamicStock[pkg.id] : pkg.defaultRemaining;
-                const isLast = idx === basePackages.length - 1;
+                
+                // Solar Legend = full-row ONLY when infinity is OFF
+                // Infinity pkg = always full-row (same big size as Solar Legend)
+                // All other packages = normal grid cell
+                const isSolarLegend = (pkg.id === 'solar_legend');
+                const makeFullRow = isInfinityPkg || (isSolarLegend && !infinityOn);
+
+                // Extra styling for the infinity package card
+                const infinityStyle = isInfinityPkg ? 'border: 2.5px solid #d4af37 !important; box-shadow: 0 8px 30px rgba(212,175,55,0.4) !important;' : '';
 
                 container.innerHTML += `
-                    <div class="package-card${isLast ? ' full-row' : ''}">
+                    <div class="package-card${makeFullRow ? ' full-row' : ''}" style="${infinityStyle}">
+                        ${isInfinityPkg ? '<div style="position:absolute;top:12px;right:12px;background:#d4af37;color:#000;font-size:10px;font-weight:900;padding:4px 10px;border-radius:20px;">⭐ EXCLUSIVE</div>' : ''}
                         <div class="package-title">${pkg.name}</div>
                         <div style="font-size: 12px; color: var(--text-gray); margin-bottom: 5px;">
                             ${this.t("remaining")}: <strong>${remaining}</strong> ${this.t("pcs")}
@@ -2923,6 +2947,15 @@
                 const entries = Object.entries(all).map(([key, u]) => ({ key, ...u }));
                 // Premium = has active package; Regular = no active package
                 const isPremium = (u) => u.activePackage && u.activePackage !== 'none';
+                
+                // Count both groups and update counters
+                const premiumCount = entries.filter(u => isPremium(u)).length;
+                const regularCount = entries.filter(u => !isPremium(u)).length;
+                const cpEl = document.getElementById('users-count-premium');
+                const crEl = document.getElementById('users-count-regular');
+                if (cpEl) cpEl.innerText = premiumCount + ' users';
+                if (crEl) crEl.innerText = regularCount + ' users';
+                
                 const filtered = entries.filter(u => tab === 'premium' ? isPremium(u) : !isPremium(u));
                 // sort by ID
                 filtered.sort((a,b) => String(a.myCode||a.key).localeCompare(String(b.myCode||b.key), undefined, {numeric:true}));
@@ -4582,7 +4615,7 @@
                         if (w.status === 'pending') {
                             btnHtml = `<button class="btn btn-admin" style="font-size:11px; padding:8px; width:48%; background: var(--success-green) !important;" onclick="appLogic.adminSetWithdrawStatus('${w.id}', '${w.userKey}', 'completed')">Complete</button>`;
                         } else if (w.status === 'completed') {
-                            btnHtml = `<button class="btn admin-hide-btn" style="width:48%; background:#8B001A; color:#fff; border:none;" onclick="appLogic.adminHideWithdrawal('${w.id}')">Delete</button>`;
+                            btnHtml = `<button class="btn admin-hide-btn" style="width:48%; background:#6B0011; color:#fff; border:none;" onclick="appLogic.adminHideWithdrawal('${w.id}')">Delete</button>`;
                         }
                         
                         list.innerHTML += `
