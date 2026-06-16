@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -1027,8 +1027,9 @@
             color:#ffffff !important;
         }
         #withdrawal-view .amt-box.selected { border:2.5px solid #ffd700 !important; background-color:#13294f !important; color:#ffffff !important; box-shadow: 0 0 8px rgba(212,175,55,0.5) !important; }
-        #withdrawal-view .pin-box { background: rgba(255,255,255,0.8) !important; border:1px solid #ccc !important; color:#000 !important; }
-        #withdrawal-view p, #withdrawal-view span { color:#000000 !important; }
+        #withdrawal-view .pin-box { background: rgba(255,255,255,0.12) !important; border:1.5px solid #d4af37 !important; color:#ffffff !important; }
+        #withdrawal-view .pin-box:focus { background: rgba(255,255,255,0.22) !important; border-color:#ffd700 !important; outline:none !important; }
+        #withdrawal-view p, #withdrawal-view span { color:#ffffff !important; }
         #withdrawal-view .back-btn.close-btn, #withdrawal-view .close-btn { color:#000000 !important; }
         #withdrawal-view .close-btn i { color:#000000 !important; }
 
@@ -1428,19 +1429,23 @@
         <button class="back-btn close-btn" onclick="appLogic.navTo('dashboard')"><i class="fas fa-times"></i></button>
         <h2 style="text-transform: capitalize; text-align: center; margin-bottom: 20px;" data-i18n="withdrawal">Withdrawal</h2>
 
-        <div class="card">
+        <!-- Select Amount block -->
+        <div style="background-color:#0a1d3a; background-image: radial-gradient(circle at top left, rgba(80,140,255,0.35) 0%, transparent 60%), radial-gradient(circle at bottom right, rgba(30,60,120,0.5) 0%, transparent 65%); border: 1.5px solid #d4af37; border-radius: 16px; padding: 18px; margin-bottom: 16px;">
             <div id="withdraw-wallet-line" style="text-align:center; font-family:monospace; font-size:13px; font-weight:800; color:#ffffff; margin-bottom:14px; word-break:break-all; display:none;"></div>
-            <p style="font-size:12px; margin-bottom:10px; font-weight:bold; text-align:center; color:#ffffff;" data-i18n="selectAmount">Select Amount</p>
+            <p style="font-size:12px; margin-bottom:12px; font-weight:bold; text-align:center; color:#ffffff;" data-i18n="selectAmount">Select Amount</p>
             <div class="amount-grid" id="withdraw-amount-grid"></div>
-
             <input type="hidden" id="selected-withdraw-amt" value="10">
+        </div>
 
-            <div style="text-align: center; margin-bottom: 15px;">
-                <span style="font-size: 13px; font-weight: bold; color: #ffffff;"><span data-i18n="withdrawalFee">Withdrawal Fee</span>: <span id="withdraw-fee-text">10%</span></span><br>
-                <span style="font-size: 14px; font-weight: 900; color: #ffffff;"><span data-i18n="youWillReceive">You will receive</span>: <span id="withdraw-net-amount"></span></span>
-            </div>
+        <!-- Fee info block -->
+        <div style="background-color:#0a1d3a; background-image: radial-gradient(circle at top left, rgba(80,140,255,0.35) 0%, transparent 60%), radial-gradient(circle at bottom right, rgba(30,60,120,0.5) 0%, transparent 65%); border: 1.5px solid #d4af37; border-radius: 16px; padding: 16px; margin-bottom: 16px; text-align: center;">
+            <span style="font-size: 13px; font-weight: bold; color: #ffffff; display:block; margin-bottom:6px;"><span data-i18n="withdrawalFee">Withdrawal Fee</span>: <span id="withdraw-fee-text">10%</span></span>
+            <span style="font-size: 14px; font-weight: 900; color: #ffffff;"><span data-i18n="youWillReceive">You will receive</span>: <span id="withdraw-net-amount"></span></span>
+        </div>
 
-            <p style="font-size:12px; color:#ffffff; margin-bottom:10px; font-weight:bold; text-align:center;" data-i18n="enterPin">Enter 6-digit PIN</p>
+        <!-- PIN block -->
+        <div style="background-color:#0a1d3a; background-image: radial-gradient(circle at top left, rgba(80,140,255,0.35) 0%, transparent 60%), radial-gradient(circle at bottom right, rgba(30,60,120,0.5) 0%, transparent 65%); border: 1.5px solid #d4af37; border-radius: 16px; padding: 18px; margin-bottom: 16px;">
+            <p style="font-size:12px; color:#ffffff; margin-bottom:14px; font-weight:bold; text-align:center;" data-i18n="enterPin">Enter 6-digit PIN</p>
             <div class="pin-grid" id="withdraw-pin-grid">
                 <input type="password" inputmode="numeric" class="pin-box" maxlength="1" onkeyup="appLogic.movePin(this, 1)">
                 <input type="password" inputmode="numeric" class="pin-box" maxlength="1" onkeyup="appLogic.movePin(this, 2)">
@@ -1449,11 +1454,11 @@
                 <input type="password" inputmode="numeric" class="pin-box" maxlength="1" onkeyup="appLogic.movePin(this, 5)">
                 <input type="password" inputmode="numeric" class="pin-box" maxlength="1" onkeyup="appLogic.movePin(this, 6)">
             </div>
-
-            <button class="btn" id="btn-withdraw" onclick="appLogic.withdraw()" style="background:#6B0011; color:#fff; border:none;">
-                <span data-i18n="withdrawal">Withdrawal</span>
-            </button>
         </div>
+
+        <button class="btn" id="btn-withdraw" onclick="appLogic.withdraw()" style="background:#6B0011; color:#fff; border:none;">
+            <span data-i18n="withdrawal">Withdrawal</span>
+        </button>
     </div>
 
     <div id="packages-modal" class="modal-overlay">
@@ -1906,9 +1911,9 @@
                 <div class="input-wrapper" style="margin-bottom:10px;">
                     <input type="text" id="prof-crypto-addr" placeholder="USDT (ERC20) Address">
                 </div>
-                <button class="btn btn-settings-outline" onclick="appLogic.saveCryptoAddress()">Save Address</button>
+                <button class="btn" style="background-color:#0a1d3a; background-image: radial-gradient(circle at top left, rgba(80,140,255,0.35) 0%, transparent 60%), radial-gradient(circle at bottom right, rgba(30,60,120,0.5) 0%, transparent 65%); border: 1.5px solid #d4af37 !important; color:#ffffff !important;" onclick="appLogic.saveCryptoAddress()">Save Address</button>
             </div>
-            <button id="btn-add-wallet" class="btn btn-settings-outline" onclick="appLogic.requestWalletAction()">Add Crypto Address</button>
+            <button id="btn-add-wallet" class="btn" style="background-color:#0a1d3a; background-image: radial-gradient(circle at top left, rgba(80,140,255,0.35) 0%, transparent 60%), radial-gradient(circle at bottom right, rgba(30,60,120,0.5) 0%, transparent 65%); border: 1.5px solid #d4af37 !important; color:#ffffff !important;" onclick="appLogic.requestWalletAction()">Add Crypto Address</button>
         </div>
 
         <div class="card" style="text-align: center;">
